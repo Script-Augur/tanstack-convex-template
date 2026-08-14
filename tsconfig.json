@@ -1,0 +1,10 @@
+{
+  "extends": "@script-augur/tsconfig/app.json",
+  "include": ["**/*.ts", "**/*.tsx", "eslint.config.js"],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["vite/client"]
+  }
+}

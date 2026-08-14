@@ -1,0 +1,11 @@
+---
+description: Boundary between @script-augur npm packages and the shadcn UI registry
+alwaysApply: true
+---
+
+# Packages vs UI registry
+
+- **Private npm (`@script-augur/*`)**: Vite plugins, ESLint/Prettier/tsconfig, Node utilities, non-UI state machines. Versioned; update via `pnpm update`.
+- **shadcn registry (`Script-Augur/ui-registry`)**: UI components, hooks, layouts, agent/editor conventions. Copied into the app and owned locally.
+
+If it imports Node built-ins, hooks into Vite, or has no UI representation → **packages**, never shadcn copy.

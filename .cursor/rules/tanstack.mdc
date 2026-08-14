@@ -1,0 +1,11 @@
+---
+description: TanStack Start routing notes
+globs: src/routes/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TanStack Start
+
+- File-based routes under `src/routes/`.
+- Prefer typed `createFileRoute` APIs.
+- Keep route components thin; push data loading to Convex queries.

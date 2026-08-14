@@ -1,0 +1,13 @@
+---
+description: Back-propagate local UI changes to Script-Augur/ui-registry
+alwaysApply: false
+---
+
+# Back-propagate to ui-registry
+
+When instructed to back-propagate a change from `src/components/` (or equivalent) back to `Script-Augur/ui-registry`:
+
+1. Identify the modified component file(s).
+2. Extract any project-specific utility classes or app-specific business logic so the component stays generic.
+3. Draft a Git diff against https://github.com/Script-Augur/ui-registry.
+4. Provide a PR title and description referencing the commit hash from this repo and explaining why the change benefits the core registry.

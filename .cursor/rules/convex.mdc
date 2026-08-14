@@ -1,0 +1,12 @@
+---
+description: Thin Convex notes for this template
+globs: convex/**/*.ts
+alwaysApply: false
+---
+
+# Convex
+
+- Run `pnpm exec convex dev` so `convex/_generated` exists before editing backend code.
+- Prefer validators on public `query` / `mutation` args and returns.
+- Await all Convex DB and scheduler calls.
+- Auth/tenants: use existing npm packages (`@convex-dev/auth`, `@djpanda/*`) — not `@script-augur`.
