@@ -39,7 +39,11 @@ pnpm dlx shadcn@latest add Script-Augur/ui-registry/project-conventions
 
 ## CI
 
-Example workflow vendors `setup-script-augur` (this template is public; GitHub cannot `uses:` a private-repo action). Private same-org apps can instead call `Script-Augur/packages/.github/actions/setup-script-augur@main` and pass `NPM_TOKEN` / `GITHUB_TOKEN`.
+Example workflow vendors `setup-script-augur` and resolves `@script-augur/*` from a checkout of [`Script-Augur/packages`](https://github.com/Script-Augur/packages) so CI works without a packages-scoped PAT.
+
+For real apps with `NPM_TOKEN` (`read:packages`), install from GitHub Packages directly and prefer:
+
+`uses: Script-Augur/packages/.github/actions/setup-script-augur@main`
 
 ## Auth / tenants
 
