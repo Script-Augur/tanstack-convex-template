@@ -15,7 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: Script-Augur/packages/.github/actions/setup-script-augur@main
+      # Vendored copy of Script-Augur/packages/.github/actions/setup-script-augur
+      # (this template is public; GitHub cannot `uses:` a private-repo action from a public workflow).
+      # Private same-org apps may instead:
+      #   uses: Script-Augur/packages/.github/actions/setup-script-augur@main
+      - uses: ./.github/actions/setup-script-augur
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN || secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

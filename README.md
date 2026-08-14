@@ -39,7 +39,7 @@ pnpm dlx shadcn@latest add Script-Augur/ui-registry/project-conventions
 
 ## CI
 
-Example workflow uses `Script-Augur/packages/.github/actions/setup-script-augur` for private package installs.
+Example workflow vendors `setup-script-augur` (this template is public; GitHub cannot `uses:` a private-repo action). Private same-org apps can instead call `Script-Augur/packages/.github/actions/setup-script-augur@main` and pass `NPM_TOKEN` / `GITHUB_TOKEN`.
 
 ## Auth / tenants
 
