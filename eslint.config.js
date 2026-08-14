@@ -10,4 +10,17 @@ export default createScriptAugurEslintConfig({
   convexConfigs: convexPlugin.configs.recommended,
   reactPlugin,
   aliasPattern: '@/**',
+  ignores: [
+    '.output/**',
+    '.sa-packages/**',
+    '.storybook/**',
+    '.tanstack/**',
+    '.turbo/**',
+    'convex/_generated/**',
+    'dist/**',
+    'eslint.config.js',
+    'node_modules/**',
+    'src/routeTree.gen.ts',
+    'storybook-static/**',
+  ],
 })
