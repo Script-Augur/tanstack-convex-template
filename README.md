@@ -39,9 +39,11 @@ pnpm dlx shadcn@latest add Script-Augur/ui-registry/project-conventions
 
 ## CI
 
-Example workflow vendors `setup-script-augur` and resolves `@script-augur/*` from a checkout of [`Script-Augur/packages`](https://github.com/Script-Augur/packages) so CI works without a packages-scoped PAT.
+Example workflow vendors `setup-script-augur` and installs `@script-augur/*` from GitHub Packages with a frozen lockfile.
 
-For real apps with `NPM_TOKEN` (`read:packages`), install from GitHub Packages directly and prefer:
+Set a repo secret **`NPM_TOKEN`** (PAT with `read:packages`). `GITHUB_TOKEN` alone cannot install cross-repo packages.
+
+Private same-org apps can instead call:
 
 `uses: Script-Augur/packages/.github/actions/setup-script-augur@main`
 

@@ -19,41 +19,16 @@ jobs:
       # Vendored copy of Script-Augur/packages/.github/actions/setup-script-augur.
       # Public workflows cannot `uses:` actions from another private repo; keep a
       # local copy. Private same-org apps may call the packages action directly.
+      # Requires repo secret NPM_TOKEN (PAT with read:packages) — GITHUB_TOKEN
+      # cannot install cross-repo GitHub Packages.
       - uses: ./.github/actions/setup-script-augur
+        with:
+          cache: 'true'
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN || secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Cross-repo GitHub Packages installs need a PAT (`NPM_TOKEN` with
-      # read:packages). GITHUB_TOKEN alone 403s. Resolve from the public monorepo
-      # so template CI stays green without a packages-scoped secret.
-      - name: Checkout @script-augur packages
-        uses: actions/checkout@v4
-        with:
-          repository: Script-Augur/packages
-          path: .sa-packages
-
-      - name: Override @script-augur to monorepo paths
-        run: |
-          node <<'NODE'
-          const fs = require('fs')
-          const p = JSON.parse(fs.readFileSync('package.json', 'utf8'))
-          p.pnpm = {
-            ...(p.pnpm || {}),
-            overrides: {
-              '@script-augur/eslint-config':
-                'file:./.sa-packages/packages/eslint-config',
-              '@script-augur/eslint-plugin-module-ordering':
-                'file:./.sa-packages/packages/eslint-plugin-module-ordering',
-              '@script-augur/prettier-config':
-                'file:./.sa-packages/packages/prettier-config',
-              '@script-augur/tsconfig': 'file:./.sa-packages/packages/tsconfig',
-            },
-          }
-          fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n')
-          NODE
-
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
 
       - run: pnpm typecheck
 
